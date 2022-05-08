@@ -1,4 +1,3 @@
-
 INSERT INTO KORISNIK(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, uloga) values
 	('MilanRadovanov', 'admin123', 'Milan', 'Radovanov', 'm', '4/3/1969', 'ADMIN'),
 	('NikolaJokic', 'mvp2', 'Luka', 'Andric', 'm', '25/10/2000', 'MENADZER'),
