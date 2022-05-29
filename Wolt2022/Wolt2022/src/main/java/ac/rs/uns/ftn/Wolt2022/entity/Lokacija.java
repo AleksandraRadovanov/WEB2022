@@ -1,18 +1,9 @@
-package ac.rs.uns.ftn.Wolt2022.entity;
+package com.ftn.wolt2022.entity;
 
-import javax.persistence.*;
-
-@Entity
 public class Lokacija {
-	@Column
 	private double GeografskaDuzina;
-	
-	@Column
 	private double GeografskaSirina;
-	
-	@Column
 	private String Adresa;
-	
 	public Lokacija(double geografskaDuzina, double geografskaSirina, String adresa) {
 		super();
 		GeografskaDuzina = geografskaDuzina;
@@ -42,4 +33,6 @@ public class Lokacija {
 		return "Lokacija [GeografskaDuzina=" + GeografskaDuzina + ", GeografskaSirina=" + GeografskaSirina + ", Adresa="
 				+ Adresa + "]";
 	}
+	
+	
 }

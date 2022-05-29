@@ -1,31 +1,21 @@
-package ac.rs.uns.ftn.Wolt2022.entity;
+package com.ftn.wolt2022.entity;
 
-import javax.persistence.*;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Entity;
+import java.time.LocalDate;
 
 @Entity
-public class Menadzer extends Korisnik{
-	@Column(name = "restoran_id")
-	private Long RestoranID;
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ID;
+@Setter
+@Getter
+@NoArgsConstructor
+public class Menadzer extends Korisnik {
+	private Long restoranID;
 
-	public Long getRestoranID() {
-		return RestoranID;
-	}
-	public void setRestoranID(Long restoranID) {
-		RestoranID = restoranID;
-	}
-	public Menadzer(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja,
-			ac.rs.uns.ftn.Wolt2022.entity.Korisnik.Uloga uloga, Long restoranID, Long iD) {
-		super(korisnickoIme, lozinka, ime, prezime, pol, datumRodjenja, uloga);
-		RestoranID = restoranID;
-		ID = iD;
-	}
-	public Long getID() {
-		return ID;
-	}
-	public void setID(Long iD) {
-		ID = iD;
+	public Menadzer(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String pol, LocalDate datumRodjenja, Korisnik.Uloga uloga, Long restoranID) {
+
 	}
 }

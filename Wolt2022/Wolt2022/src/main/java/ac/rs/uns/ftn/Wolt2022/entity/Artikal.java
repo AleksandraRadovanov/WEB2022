@@ -1,92 +1,46 @@
-package ac.rs.uns.ftn.Wolt2022.entity;
+package com.ftn.wolt2022.entity;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Artikal {
 	enum Tip {
 		HRANA,
 		PICE
 	}
-	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
-	
-	@Column(name = "naziv")
+	@Column
 	private String Naziv;
-	
-	@Column(name = "cena")
+	@Column
 	private double Cena;
-	
-	@Column(name = "tip")
+	@Column
 	private Tip Tip;
-	
-	@Column(name = "kolicina")
+	@Column
 	private int Kolicina;
-	
-	@Column(name = "opis")
+	@Column
 	private String Opis;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+
+	@ManyToOne(fetch = FetchType.LAZY) //LAZY kad su liste u pitanju
 	private Restoran Restoran;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	private Porudzbina Porudzbina;
-	
-	public Long getID() {
-		return ID;
-	}
-	public void setID(Long iD) {
-		ID = iD;
-	}
-	
-	public Artikal(Long iD, String naziv, double cena, ac.rs.uns.ftn.Wolt2022.entity.Artikal.Tip tip, int kolicina,
-			String opis, ac.rs.uns.ftn.Wolt2022.entity.Restoran restoran) {
-		super();
-		ID = iD;
-		Naziv = naziv;
-		Cena = cena;
-		Tip = tip;
-		Kolicina = kolicina;
-		Opis = opis;
-		Restoran = restoran;
-	}
-	public String getNaziv() {
-		return Naziv;
-	}
-	public void setNaziv(String naziv) {
-		Naziv = naziv;
-	}
-	public double getCena() {
-		return Cena;
-	}
-	public void setCena(double cena) {
-		Cena = cena;
-	}
-	public Tip getTip() {
-		return Tip;
-	}
-	public void setTip(Tip tip) {
-		Tip = tip;
-	}
-	public int getKolicina() {
-		return Kolicina;
-	}
-	public void setKolicina(int kolicina) {
-		Kolicina = kolicina;
-	}
-	public String getOpis() {
-		return Opis;
-	}
-	public void setOpis(String opis) {
-		Opis = opis;
-	}
+
+	@OneToMany(mappedBy = "porudzbina", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Set<Porudzbina> porudzbine = new HashSet<>();
 	@Override
 	public String toString() {
 		return "Artikal [Naziv=" + Naziv + ", Cena=" + Cena + ", Tip=" + Tip + ", Kolicina=" + Kolicina + ", Opis="
 				+ Opis + "]";
 	}
-	
-
 }

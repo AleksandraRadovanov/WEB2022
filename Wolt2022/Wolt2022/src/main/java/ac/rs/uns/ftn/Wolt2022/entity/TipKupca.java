@@ -1,48 +1,34 @@
-package ac.rs.uns.ftn.Wolt2022.entity;
+package com.ftn.wolt2022.entity;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
 public class TipKupca {
 	enum Ime {
 		ZLATNI,
 		SREBRNI,
 		BRONZANI
 	}
-	@Column(name = "ime")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private Ime Ime;
-	@Column(name = "popust")
 	private float Popust;
-	@Column(name = "trazeni_broj_bodova")
 	private int TrazeniBrojBodova;
-	
-	public TipKupca(ac.rs.uns.ftn.Wolt2022.entity.TipKupca.Ime ime, float popust, int trazeniBrojBodova) {
-		super();
-		Ime = ime;
-		Popust = popust;
-		TrazeniBrojBodova = trazeniBrojBodova;
-	}
-	public Ime getIme() {
-		return Ime;
-	}
-	public void setIme(Ime ime) {
-		Ime = ime;
-	}
-	public float getPopust() {
-		return Popust;
-	}
-	public void setPopust(float popust) {
-		Popust = popust;
-	}
-	public int getTrazeniBrojBodova() {
-		return TrazeniBrojBodova;
-	}
-	public void setTrazeniBrojBodova(int trazeniBrojBodova) {
-		TrazeniBrojBodova = trazeniBrojBodova;
-	}
+
 	@Override
 	public String toString() {
 		return "TipKupca [Ime=" + Ime + ", Popust=" + Popust + ", TrazeniBrojBodova=" + TrazeniBrojBodova + "]";
 	}
-
 }

@@ -1,45 +1,39 @@
-package ac.rs.uns.ftn.Wolt2022.entity;
+package com.ftn.wolt2022.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Komentar {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column
+
 	private String KorisnikoImeKupca;
+	@Column
 	private Long IDRestorana;
+	@Column
 	private String Tekst;
+	@Column
 	private int Ocena;
-	public Komentar(String korisnikoImeKupca, Long iDRestorana, String tekst, int ocena) {
-		super();
-		KorisnikoImeKupca = korisnikoImeKupca;
-		IDRestorana = iDRestorana;
-		Tekst = tekst;
-		Ocena = ocena;
-	}
-	public String getKorisnikoImeKupca() {
-		return KorisnikoImeKupca;
-	}
-	public void setKorisnikoImeKupca(String korisnikoImeKupca) {
-		KorisnikoImeKupca = korisnikoImeKupca;
-	}
-	public Long getIDRestorana() {
-		return IDRestorana;
-	}
-	public void setIDRestorana(Long iDRestorana) {
-		IDRestorana = iDRestorana;
-	}
-	public String getTekst() {
-		return Tekst;
-	}
-	public void setTekst(String tekst) {
-		Tekst = tekst;
-	}
-	public int getOcena() {
-		return Ocena;
-	}
-	public void setOcena(int ocena) {
-		Ocena = ocena;
-	}
+	@OneToMany(mappedBy = "restoran", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Restoran restoran;
+
+	@OneToMany(mappedBy = "kupac", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Kupac kupac;
+
 	@Override
 	public String toString() {
 		return "Komentar [KorisnikoImeKupca=" + KorisnikoImeKupca + ", IDRestorana=" + IDRestorana + ", Tekst=" + Tekst
 				+ ", Ocena=" + Ocena + "]";
 	}
-
 }

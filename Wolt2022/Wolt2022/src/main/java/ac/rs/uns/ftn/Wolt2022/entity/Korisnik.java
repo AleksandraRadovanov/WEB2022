@@ -1,85 +1,44 @@
-package ac.rs.uns.ftn.Wolt2022.entity;
+package com.ftn.wolt2022.entity;
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.time.LocalDate;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Getter
+@Setter
+@NoArgsConstructor
+@MappedSuperclass
 public class Korisnik implements Serializable {
-	enum Uloga {
+	public enum Uloga {
 		ADMIN,
 		MENADZER,
 		DOSTAVLJAC,
 		KUPAC
 	}
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	private Long ID;
+	@Column
 	private String KorisnickoIme;
-	
-	@Column(name = "lozinka", unique = true)
+	@Column
 	private String Lozinka;
-	
-	@Column(name = "ime")
+	@Column
 	private String Ime;
-	
-	@Column(name = "prezime")
+	@Column
 	private String Prezime;
-	
-	@Column(name = "pol")
+	@Column
 	private String Pol;
-	
-	@Column(name = "datum_rodjenja")
-	private String DatumRodjenja;
-	
-	@Column(name = "uloga")
+	@Column
+	private LocalDate DatumRodjenja;
+	@Column
 	private Uloga Uloga;
-	
-	public String getKorisnickoIme() {
-		return KorisnickoIme;
-	}
-	public void setKorisnickoIme(String korisnickoIme) {
-		KorisnickoIme = korisnickoIme;
-	}
-	public String getLozinka() {
-		return Lozinka;
-	}
-	public void setLozinka(String lozinka) {
-		Lozinka = lozinka;
-	}
-	public String getIme() {
-		return Ime;
-	}
-	public void setIme(String ime) {
-		Ime = ime;
-	}
-	public String getPrezime() {
-		return Prezime;
-	}
-	public void setPrezime(String prezime) {
-		Prezime = prezime;
-	}
-	public String getPol() {
-		return Pol;
-	}
-	public void setPol(String pol) {
-		Pol = pol;
-	}
-	public String getDatumRodjenja() {
-		return DatumRodjenja;
-	}
-	public void setDatumRodjenja(String datumRodjenja) {
-		DatumRodjenja = datumRodjenja;
-	}
-	public Uloga getUloga() {
-		return Uloga;
-	}
-	public void setUloga(Uloga uloga) {
-		Uloga = uloga;
-	}
-	public Korisnik(String korisnickoIme, String lozinka, String ime, String prezime, String pol, String datumRodjenja,
-			ac.rs.uns.ftn.Wolt2022.entity.Korisnik.Uloga uloga) {
-		super();
+
+	public Korisnik(Long ID, String korisnickoIme, String lozinka, String ime, String prezime, String pol, LocalDate datumRodjenja, Korisnik.Uloga uloga) {
+		this.ID = ID;
 		KorisnickoIme = korisnickoIme;
 		Lozinka = lozinka;
 		Ime = ime;
@@ -88,6 +47,7 @@ public class Korisnik implements Serializable {
 		DatumRodjenja = datumRodjenja;
 		Uloga = uloga;
 	}
+
 	@Override
 	public String toString() {
 		return "Korisnik [KorisnickoIme=" + KorisnickoIme + ", Lozinka=" + Lozinka + ", Ime=" + Ime + ", Prezime="
