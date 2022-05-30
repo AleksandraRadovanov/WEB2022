@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 import com.ftn.wolt2022.service.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RestoranService {
 
     @Autowired

@@ -17,5 +17,4 @@ public class Wolt2022Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Wolt2022Application.class, args);
 	}
-
 }

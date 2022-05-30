@@ -26,8 +26,6 @@ public class AdminController {
     private final RestoranService restoranService;
     private final DostavljacService dostavljacService;
 
-
-
     @Autowired
     public AdminController(AdminService adminService, KorisnikService korisnikService, MenadzerService menadzerService, RestoranService restoranService, DostavljacService dostavljacService) {
         this.adminService = adminService;
@@ -106,7 +104,4 @@ public class AdminController {
         }
         return new ResponseEntity<>(pom, HttpStatus.OK);
     }
-
-
-
 }

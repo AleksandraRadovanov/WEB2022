@@ -4,9 +4,10 @@ import com.ftn.wolt2022.entity.Admin;
 import com.ftn.wolt2022.entity.Dostavljac;
 import com.ftn.wolt2022.repository.AdminRepository;
 import com.ftn.wolt2022.repository.DostavljacRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class DostavljacLogInService {
     private final DostavljacRepository dostavljacRepository;
 
