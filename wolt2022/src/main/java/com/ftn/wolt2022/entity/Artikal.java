@@ -33,11 +33,9 @@ public class Artikal {
 	@Column
 	private String Opis;
 
-	@ManyToOne(fetch = FetchType.LAZY) //LAZY kad su liste u pitanju
-	private Restoran Restoran;
+//	@ManyToOne(fetch = FetchType.LAZY) //LAZY kad su liste u pitanju
+//	private Restoran Restoran;
 
-	@OneToMany(mappedBy = "porudzbina", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Porudzbina> porudzbine = new HashSet<>();
 	@Override
 	public String toString() {
 		return "Artikal [Naziv=" + Naziv + ", Cena=" + Cena + ", Tip=" + Tip + ", Kolicina=" + Kolicina + ", Opis="

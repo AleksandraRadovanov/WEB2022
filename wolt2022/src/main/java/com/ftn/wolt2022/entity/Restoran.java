@@ -1,40 +1,40 @@
 package com.ftn.wolt2022.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Restoran {
-	public Restoran(Long id, String naziv, Tip tipRestorana) {
-		this.ID = id;
-		this.Naziv = naziv;
-		this.TipRestorana = tipRestorana;
-	}
 
-	public enum Tip {
-		SRPSKI,
-		ITALIJANSKI,
-		KINESKI,
-		TURSKI
-	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ID;
 	private String Naziv;
-	private Tip TipRestorana;
-	@OneToMany(mappedBy = "restoran", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Artikal> artikli = new HashSet<>(); //relacija
-	private Lokacija Lokacija; //relacija
-	private boolean Otvoren;
+	private TipRestorana TipRestorana;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Artikal> artikli = new ArrayList<>();
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Komentar> komentari = new ArrayList<>(0);
+
+	@OneToOne
+	@MapsId
+	private Lokacija Lokacija;
+	private boolean Otvoren;
+	@OneToOne
+	@MapsId
 	private Menadzer menadzer;
 
 	@Override

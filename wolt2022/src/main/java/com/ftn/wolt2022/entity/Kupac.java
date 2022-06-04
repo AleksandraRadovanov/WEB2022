@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -16,20 +13,14 @@ import java.util.Set;
 @Entity
 public class Kupac extends Korisnik {
 
-	public com.ftn.wolt2022.entity.TipKupca getTipKupca() {
-		return TipKupca;
-	}
-	@Column
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private TipKupca TipKupca;
 	@Column
-	
 	private int SakulpljeniBodovi;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Komentar> komentari = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Komentar> komentari = new ArrayList<>(0);
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Porudzbina> porudzbine = new HashSet<>();
-
-
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Porudzbina> porudzbine = new ArrayList<>(0);
 }

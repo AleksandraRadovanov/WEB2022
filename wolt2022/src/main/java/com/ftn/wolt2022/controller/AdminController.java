@@ -51,11 +51,11 @@ public class AdminController {
     {
         List<Korisnik> korisnici = korisnikService.findAll();
         List<Korisnik> pom = new ArrayList<>();
-        for(Korisnik k:korisnici)
-        {
-            Korisnik korisnik = new Korisnik(k.getID(), k.getKorisnickoIme(), k.getLozinka(), k.getIme(), k.getPrezime(), k.getPol(), k.getDatumRodjenja(), k.getUloga());
-            pom.add(korisnik);
-        }
+//        for(Korisnik k:korisnici)
+//        {
+//            Korisnik korisnik = new Korisnik(k.getID(), k.getKorisnickoIme(), k.getLozinka(), k.getIme(), k.getPrezime(), k.getPol(), k.getDatumRodjenja(), k.getUloga());
+//            pom.add(korisnik);
+//        }
         return new ResponseEntity<>(pom, HttpStatus.OK);
     }
 
@@ -63,7 +63,7 @@ public class AdminController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menadzer> napraviMenadzera(@RequestBody Menadzer menadzer) throws Exception
     {
-        Menadzer men = new Menadzer(menadzer.getID(), menadzer.getKorisnickoIme(), menadzer.getLozinka(), menadzer.getIme(), menadzer.getPrezime(), menadzer.getPol(), menadzer.getDatumRodjenja(), menadzer.getUloga(), menadzer.getRestoranID());
+        Menadzer men = new Menadzer();
         Menadzer newMenadzer = menadzerService.create(men);
 
         return new ResponseEntity<>(newMenadzer, HttpStatus.CREATED);
@@ -73,9 +73,9 @@ public class AdminController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dostavljac> napraviDostavljaca(@RequestBody Dostavljac dostavljac) throws Exception
     {
-        Dostavljac dos = new Dostavljac(dostavljac.getID(), dostavljac.getKorisnickoIme(), dostavljac.getLozinka(), dostavljac.getIme(), dostavljac.getPrezime(),
-                dostavljac.getPol(), dostavljac.getDatumRodjenja(), dostavljac.getUloga(), dostavljac.getPorudzbine());
-        Dostavljac newDostavljac = dostavljacService.create(dos);
+//        Dostavljac dos = new Dostavljac(dostavljac.getID(), dostavljac.getKorisnickoIme(), dostavljac.getLozinka(), dostavljac.getIme(), dostavljac.getPrezime(),
+//                dostavljac.getPol(), dostavljac.getDatumRodjenja(), dostavljac.getUloga(), dostavljac.getPorudzbine());
+        Dostavljac newDostavljac = dostavljacService.create(new Dostavljac());
 
         return new ResponseEntity<>(newDostavljac, HttpStatus.CREATED);
     }
@@ -84,7 +84,7 @@ public class AdminController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restoran> napraviRestoran(@RequestBody Restoran restoran) throws Exception
     {
-        Restoran res = new Restoran(restoran.getID(), restoran.getNaziv(), restoran.getTipRestorana());
+        Restoran res = new Restoran();
 
         Restoran newRestoran = restoranService.create(res);
 
@@ -97,11 +97,11 @@ public class AdminController {
     {
         List<Restoran> restorani = restoranService.findAll();
         List<Restoran> pom = new ArrayList<>();
-        for(Restoran r:restorani)
-        {
-            Restoran rest = new Restoran(r.getID(), r.getNaziv(), r.getTipRestorana());
-            pom.add(rest);
-        }
+//        for(Restoran r:restorani)
+//        {
+//            Restoran rest = new Restoran(r.getID(), r.getNaziv(), r.getTipRestorana());
+//            pom.add(rest);
+//        }
         return new ResponseEntity<>(pom, HttpStatus.OK);
     }
 }

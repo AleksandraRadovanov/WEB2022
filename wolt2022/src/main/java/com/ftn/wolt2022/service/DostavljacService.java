@@ -8,12 +8,10 @@ public class DostavljacService {
 
     public void save(Dostavljac dostavljac) {
     }
-
     public Dostavljac findOne(Long id) {
         Dostavljac dostavljac = new Dostavljac();
         return dostavljac;
     }
-
     public Dostavljac create(Dostavljac dos) {
 return null;
     }

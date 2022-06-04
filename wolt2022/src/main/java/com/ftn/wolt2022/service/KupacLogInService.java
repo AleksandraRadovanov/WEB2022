@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class KupacLogInService {
     private final KupacRepository kupacRepository;
-    @Autowired
+
     public KupacLogInService(KupacRepository kupacRepository) {
         this.kupacRepository = kupacRepository;
     }
@@ -19,5 +18,4 @@ public class KupacLogInService {
     {
         return kupacRepository.findAll();
     }
-
 }

@@ -3,6 +3,7 @@ package com.ftn.wolt2022.service;
 import antlr.ASTNULLType;
 import com.ftn.wolt2022.entity.Lokacija;
 import com.ftn.wolt2022.entity.Restoran;
+import com.ftn.wolt2022.entity.TipRestorana;
 import com.ftn.wolt2022.repository.RestoranRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RestoranService {
-
     @Autowired
     private RestoranService restoranService;
     public List<Restoran> findAll() {
@@ -26,13 +26,8 @@ public class RestoranService {
         Restoran restoran = new Restoran();
         return restoran;
     }
-
     public void save(Restoran restoranp) {
-
     }
-
-
-
     public List<Restoran> findByNaziv(String naziv) {
         List<Restoran> restorani = restoranService.findAll();
         List<Restoran> pom = new ArrayList<Restoran>();
@@ -45,8 +40,7 @@ public class RestoranService {
         }
         return pom;
     }
-
-    public List<Restoran> findByTip(Restoran.Tip tip) {
+    public List<Restoran> findByTip(TipRestorana tip) {
         List<Restoran> restorani = restoranService.findAll();
         List<Restoran> pom = new ArrayList<Restoran>();
         for(Restoran r : restorani)
@@ -58,7 +52,6 @@ public class RestoranService {
         }
         return pom;
     }
-
     public List<Restoran> findByLokacija(Lokacija lokacija) {
         List<Restoran> restorani = restoranService.findAll();
         List<Restoran> pom = new ArrayList<Restoran>();
@@ -71,8 +64,6 @@ public class RestoranService {
         }
         return pom;
     }
-
-
     public Restoran  findByMenadzerID(Long menadzer_id) {
         List<Restoran> restorani = restoranService.findAll();
         Restoran pom = new Restoran();
@@ -91,7 +82,6 @@ public class RestoranService {
         }
         return pom;
     }
-
     public Restoran create(Restoran res) {
         return null;
     }

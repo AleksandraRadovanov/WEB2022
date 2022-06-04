@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 
 @Entity
@@ -13,9 +15,7 @@ import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 public class Menadzer extends Korisnik {
-	private Long restoranID;
-
-	public Menadzer(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String pol, LocalDate datumRodjenja, Korisnik.Uloga uloga, Long restoranID) {
-
-	}
+	@OneToOne
+    @MapsId
+    private Restoran restoran;
 }

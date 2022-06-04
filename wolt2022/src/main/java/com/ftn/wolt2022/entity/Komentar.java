@@ -11,29 +11,19 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Entity
 public class Komentar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	@Column
-
-	private String KorisnikoImeKupca;
-	@Column
-	private Long IDRestorana;
+	private Long id;
 	@Column
 	private String Tekst;
 	@Column
 	private int Ocena;
-	@OneToMany(mappedBy = "restoran", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Restoran restoran;
-
-	@OneToMany(mappedBy = "kupac", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Kupac kupac;
 
 	@Override
 	public String toString() {
-		return "Komentar [KorisnikoImeKupca=" + KorisnikoImeKupca + ", IDRestorana=" + IDRestorana + ", Tekst=" + Tekst
+		return "Komentar [KorisnikoImeKupca="  + ", Tekst=" + Tekst
 				+ ", Ocena=" + Ocena + "]";
 	}
 }

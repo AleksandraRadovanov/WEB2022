@@ -144,12 +144,13 @@ public class KorisnikController
         @RequestMapping("/menadzer/{menadzer_id}")
         public String getTrainers_menager(@PathVariable("menadzer_id") Long menadzer_id, Model model) //?????
         {
-            Menadzer menadzer = menadzerService.getMenadzerByID(menadzer_id);
-            Restoran restoran = restoranService.getRestoranById(menadzerService.getMenadzerByID(menadzer_id).getRestoranID());
-            model.addAttribute("restoran", restoran);
-            model.addAttribute("id", menadzer_id);
-            List<Porudzbina> porudzbine = porudzbinaService.findAlByRestoranID();
-            model.addAttribute("porudzbine", porudzbine);
+//            Menadzer menadzer = menadzerService.getMenadzerByID(menadzer_id);
+//            Restoran restoran = restoranService.getRestoranById(menadzerService.getMenadzerByID(menadzer_id).getRestoranID());
+//
+//            model.addAttribute("restoran", restoran);
+//            model.addAttribute("id", menadzer_id);
+//            List<Porudzbina> porudzbine = porudzbinaService.findAlByRestoranID();
+//            model.addAttribute("porudzbine", porudzbine);
 
             return "menadzer.html";
         }
@@ -233,7 +234,7 @@ public class KorisnikController
     }
 
     @PostMapping("/prikaz_restorana_po_tipu")
-    public String findRestoranByTip(@PathVariable("korisnik_id") Restoran.Tip tip, Model model)
+    public String findRestoranByTip(@PathVariable("korisnik_id") TipRestorana tip, Model model)
     {
         List<Restoran> restorani = restoranService.findByTip(tip);
 

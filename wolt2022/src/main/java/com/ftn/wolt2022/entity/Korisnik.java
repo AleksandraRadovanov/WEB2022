@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @MappedSuperclass
 public class Korisnik implements Serializable {
 	public enum Uloga {
@@ -36,17 +35,6 @@ public class Korisnik implements Serializable {
 	private LocalDate DatumRodjenja;
 	@Column
 	private Uloga Uloga;
-
-	public Korisnik(Long ID, String korisnickoIme, String lozinka, String ime, String prezime, String pol, LocalDate datumRodjenja, Korisnik.Uloga uloga) {
-		this.ID = ID;
-		KorisnickoIme = korisnickoIme;
-		Lozinka = lozinka;
-		Ime = ime;
-		Prezime = prezime;
-		Pol = pol;
-		DatumRodjenja = datumRodjenja;
-		Uloga = uloga;
-	}
 
 	@Override
 	public String toString() {

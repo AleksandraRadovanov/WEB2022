@@ -12,7 +12,6 @@ public class KorisnikService {
         List<Korisnik> korisnici = new ArrayList<Korisnik>();
         return korisnici;
     }
-
     public Korisnik findOne(Long korisnik_id) {
         Korisnik korisnik = new Korisnik();
         return korisnik;
