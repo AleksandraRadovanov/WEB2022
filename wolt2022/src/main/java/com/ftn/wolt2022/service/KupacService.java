@@ -10,6 +10,7 @@ public class KupacService {
     }
     public Kupac findOne(Long id) {
         Kupac kupac = new Kupac();
+
         return kupac;
     }
 }

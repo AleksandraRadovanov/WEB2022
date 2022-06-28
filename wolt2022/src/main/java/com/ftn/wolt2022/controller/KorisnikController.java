@@ -196,7 +196,6 @@ public class KorisnikController
             return "redirect:/admin/" + adminID;
         }
 
-
         @PostMapping("/create_restoran")
         public String create_restoran(@ModelAttribute Restoran restoran)
         {
@@ -221,7 +220,6 @@ public class KorisnikController
 
         return "prikazSvihRestorana.html";
     }
-
 
     @PostMapping("/prikaz_restorana_po_nazivu")
     public String findRestoranByNaziv(@PathVariable("korisnik_id") String naziv, Model model)

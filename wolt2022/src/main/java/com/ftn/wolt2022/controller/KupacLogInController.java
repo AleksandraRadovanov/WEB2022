@@ -23,6 +23,7 @@ public class KupacLogInController {
         this.kupacLogInService = kupacLogInService;
     }
 
+    //logovanje kupca
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<KupacLogInDTO> login(@RequestBody KupacLogInDTO kupacLogInDTO){
         KupacLogInDTO kupacLogInDTO1 = new KupacLogInDTO(kupacLogInDTO.getID(), kupacLogInDTO.getKorisnickoIme(), kupacLogInDTO.getLozinka());

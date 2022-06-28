@@ -21,6 +21,10 @@ public class Komentar {
 	@Column
 	private int Ocena;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Restoran Restoran;
+
+
 	@Override
 	public String toString() {
 		return "Komentar [KorisnikoImeKupca="  + ", Tekst=" + Tekst

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin("*")
 @RestController
@@ -50,13 +51,8 @@ public class AdminController {
     public ResponseEntity<List<Korisnik>> findAll()
     {
         List<Korisnik> korisnici = korisnikService.findAll();
-        List<Korisnik> pom = new ArrayList<>();
-//        for(Korisnik k:korisnici)
-//        {
-//            Korisnik korisnik = new Korisnik(k.getID(), k.getKorisnickoIme(), k.getLozinka(), k.getIme(), k.getPrezime(), k.getPol(), k.getDatumRodjenja(), k.getUloga());
-//            pom.add(korisnik);
-//        }
-        return new ResponseEntity<>(pom, HttpStatus.OK);
+
+        return new ResponseEntity<>(korisnici, HttpStatus.OK);
     }
 
     //kreiranje menadzera
@@ -73,11 +69,17 @@ public class AdminController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dostavljac> napraviDostavljaca(@RequestBody Dostavljac dostavljac) throws Exception
     {
-//        Dostavljac dos = new Dostavljac(dostavljac.getID(), dostavljac.getKorisnickoIme(), dostavljac.getLozinka(), dostavljac.getIme(), dostavljac.getPrezime(),
-//                dostavljac.getPol(), dostavljac.getDatumRodjenja(), dostavljac.getUloga(), dostavljac.getPorudzbine());
-        Dostavljac newDostavljac = dostavljacService.create(new Dostavljac());
+        List<Dostavljac> dostavljaci = dostavljacService.findAll();
 
-        return new ResponseEntity<>(newDostavljac, HttpStatus.CREATED);
+
+       Dostavljac newDostavljac = dostavljacService.create(new Dostavljac(dostavljac.getID(), dostavljac.getKorisnickoIme(),
+                                                                           dostavljac.getLozinka(), dostavljac.getIme(), dostavljac.getPrezime(),
+                                                                           dostavljac.getPol(), dostavljac.getDatumRodjenja(), dostavljac.getUloga(),
+                                                                           dostavljac.getPorudzbine()));
+        dostavljaci.add(newDostavljac);
+
+       return new ResponseEntity<>(newDostavljac, HttpStatus.CREATED);
+
     }
 
     //kreiraj restoran
@@ -96,12 +98,16 @@ public class AdminController {
     public ResponseEntity<List<Restoran>> sviRestorani()
     {
         List<Restoran> restorani = restoranService.findAll();
-        List<Restoran> pom = new ArrayList<>();
-//        for(Restoran r:restorani)
-//        {
-//            Restoran rest = new Restoran(r.getID(), r.getNaziv(), r.getTipRestorana());
-//            pom.add(rest);
-//        }
-        return new ResponseEntity<>(pom, HttpStatus.OK);
+        return new ResponseEntity<>(restorani, HttpStatus.OK);
+    }
+
+    //brisanje restorana
+    @GetMapping("/remove/{trainingId}/{id}")//ukloni trening
+    public String removeRestoran(@PathVariable("restoranID") Long restoranID, @PathVariable("id") Long id)
+    {
+        Restoran restoran = this.restoranService.getRestoranById(id) ;
+        List<Restoran> temp = restoranService.findAll();
+        temp.remove(restoran);
+        return "redirect:/admin/"+id+"/restorani";
     }
 }

@@ -33,8 +33,8 @@ public class Artikal {
 	@Column
 	private String Opis;
 
-//	@ManyToOne(fetch = FetchType.LAZY) //LAZY kad su liste u pitanju
-//	private Restoran Restoran;
+	@ManyToOne(fetch = FetchType.LAZY) //LAZY kad su liste u pitanju
+	private Restoran Restoran;
 
 	@Override
 	public String toString() {

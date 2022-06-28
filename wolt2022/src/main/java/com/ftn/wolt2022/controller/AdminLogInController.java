@@ -22,6 +22,7 @@ public class AdminLogInController {
         this.adminLogInService = adminLogInService;
     }
 
+    //logovanje admina
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AdminLogInDTO> login(@RequestBody AdminLogInDTO adminLogInDTO)
     {

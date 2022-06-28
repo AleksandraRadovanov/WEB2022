@@ -18,12 +18,14 @@ public class RestoranService {
     private RestoranService restoranService;
     public List<Restoran> findAll() {
         List<Restoran> restorani = new ArrayList<Restoran>();
+
         return restorani;
     }
 
     public static Restoran getRestoranById(Long ID)
     {
         Restoran restoran = new Restoran();
+
         return restoran;
     }
     public void save(Restoran restoranp) {
@@ -83,6 +85,7 @@ public class RestoranService {
         return pom;
     }
     public Restoran create(Restoran res) {
+
         return null;
     }
 }

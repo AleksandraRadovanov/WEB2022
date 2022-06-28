@@ -17,6 +17,14 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 public class Dostavljac extends Korisnik {
+	public Dostavljac(List<Porudzbina> porudzbine) {
+		this.porudzbine = porudzbine;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Porudzbina> porudzbine = new ArrayList<>(0);
+
+	public Dostavljac(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String pol, LocalDate datumRodjenja, Korisnik.Uloga uloga, List<Porudzbina> porudzbine) {
+		super();
+	}
 }

@@ -24,6 +24,7 @@ public class DostavljacLogInController {
         this.dostavljacLogInService = dostavljacLogInService;
     }
 
+    //logovanje dostavljaca
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dostavljac> login(@RequestBody DostavljacLogInDTO dostavljacLogInDTO)
     {
