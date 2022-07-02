@@ -2,9 +2,11 @@ package com.ftn.wolt2022.service;
 
 import antlr.ASTNULLType;
 import com.ftn.wolt2022.entity.Lokacija;
+import com.ftn.wolt2022.entity.Menadzer;
 import com.ftn.wolt2022.entity.Restoran;
 import com.ftn.wolt2022.entity.TipRestorana;
 import com.ftn.wolt2022.repository.RestoranRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -13,7 +15,9 @@ import com.ftn.wolt2022.service.*;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class RestoranService {
+    public final RestoranRepository restoranRepository;
     public List<Restoran> findAll() {
         List<Restoran> restorani = new ArrayList<Restoran>();
 
@@ -83,7 +87,14 @@ public class RestoranService {
         return pom;
     }
     public Restoran create(Restoran res) {
-
-        return null;
+        Restoran restoran1 = new Restoran();
+        restoran1.setNaziv(res.getNaziv());
+        restoran1.setTipRestorana(res.getTipRestorana());
+        restoran1.setLokacija(res.getLokacija());
+        restoran1.setOtvoren(res.isOtvoren());
+        restoran1.setArtikli(res.getArtikli());
+        restoran1.setKomentari(res.getKomentari());
+        restoran1.setMenadzer(res.getMenadzer());
+        return restoranRepository.save(restoran1);
     }
 }

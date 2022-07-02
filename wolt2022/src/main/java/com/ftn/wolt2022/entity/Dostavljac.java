@@ -24,7 +24,16 @@ public class Dostavljac extends Korisnik {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Porudzbina> porudzbine = new ArrayList<>(0);
 
-	public Dostavljac(Long id, String korisnickoIme, String lozinka, String ime, String prezime, String pol, LocalDate datumRodjenja, Korisnik.Uloga uloga, List<Porudzbina> porudzbine) {
+	public Dostavljac(Long id,
+					  String korisnickoIme,
+					  String lozinka,
+					  String ime,
+					  String prezime,
+					  String pol,
+					  LocalDate datumRodjenja,
+					  Korisnik.Uloga uloga,
+					  List<Porudzbina> porudzbine)
+	{
 		super();
 	}
 }

@@ -32,8 +32,8 @@ public class Restoran {
 	@OneToOne
 	@MapsId
 	private Lokacija Lokacija;
-	private boolean Otvoren;
 
+	private boolean Otvoren;
 	@OneToOne
 	@JoinColumn(name = "manager_id")
 	private Menadzer menadzer;

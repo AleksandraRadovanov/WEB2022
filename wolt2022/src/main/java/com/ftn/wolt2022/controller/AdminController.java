@@ -46,8 +46,7 @@ public class AdminController {
     }
 
     //kreiranje menadzera
-    @PostMapping(path = "/menadzer",
-            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/menadzer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menadzer> napraviMenadzera(@RequestBody Menadzer menadzer) throws Exception {
         Menadzer newMenadzer = menadzerService.create(menadzer);
 
@@ -55,8 +54,7 @@ public class AdminController {
     }
 
     //kreiranje dostavljaca
-    @PostMapping(path = "dostavljac",
-            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "dostavljac", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dostavljac> napraviDostavljaca(@RequestBody Dostavljac dostavljac) throws Exception {
         List<Dostavljac> dostavljaci = dostavljacService.findAll();
 
