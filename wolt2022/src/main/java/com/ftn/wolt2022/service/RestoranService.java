@@ -69,7 +69,7 @@ public class RestoranService {
         Restoran pom = new Restoran();
         for(Restoran r : restorani)
         {
-            if(r.getMenadzer().getID() == menadzer_id)
+            if(r.getMenadzer().getId() == menadzer_id)
             {
                 pom.setID(r.getID());
                 pom.setOtvoren(r.isOtvoren());
