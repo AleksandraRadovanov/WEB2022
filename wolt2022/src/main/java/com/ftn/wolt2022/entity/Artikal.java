@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Artikal {
-	enum Tip {
+	public enum Tip {
 		HRANA,
 		PICE
 	}

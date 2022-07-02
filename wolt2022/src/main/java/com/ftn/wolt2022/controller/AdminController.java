@@ -1,6 +1,8 @@
 package com.ftn.wolt2022.controller;
 
 import com.ftn.wolt2022.DTO.AdminDTO;
+import com.ftn.wolt2022.DTO.KorisnikDTO;
+import com.ftn.wolt2022.DTO.RestoranDTO;
 import com.ftn.wolt2022.entity.*;
 import com.ftn.wolt2022.service.*;
 
@@ -38,58 +40,68 @@ public class AdminController {
     }
 
     //prikaz svih korisnika
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Korisnik>> findAll() {
+    @GetMapping(path = "/prikazi/korisnike", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<KorisnikDTO>> findAll() {
         List<Korisnik> korisnici = korisnikService.findAll();
+        List<KorisnikDTO> korisniciDTO = new ArrayList<>();
 
-        return new ResponseEntity<>(korisnici, HttpStatus.OK);
+        for(Korisnik k:korisnici)
+        {
+            KorisnikDTO korisnikDTO = new KorisnikDTO(k.getID(),
+                   k.getKorisnickoIme(), k.getLozinka(),
+                    k.getIme(), k.getPrezime(), k.getPol(),
+                    k.getDatumRodjenja(),
+                    k.getUloga());
+            korisniciDTO.add(korisnikDTO);
+
+        }
+        return new ResponseEntity<>(korisniciDTO, HttpStatus.OK);
     }
 
-    //kreiranje menadzera
-    @PostMapping(path = "/menadzer", produces = MediaType.APPLICATION_JSON_VALUE)
+    //kreiranje menadzera*uradjeno*
+    @PostMapping(path = "/napravi/menadzer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menadzer> napraviMenadzera(@RequestBody Menadzer menadzer) throws Exception {
         Menadzer newMenadzer = menadzerService.create(menadzer);
 
         return new ResponseEntity<>(newMenadzer, HttpStatus.CREATED);
     }
 
-    //kreiranje dostavljaca
-    @PostMapping(path = "dostavljac", produces = MediaType.APPLICATION_JSON_VALUE)
+    //kreiranje dostavljaca*uradjeno*
+    @PostMapping(path = "/napravi/dostavljac", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dostavljac> napraviDostavljaca(@RequestBody Dostavljac dostavljac) throws Exception {
-        List<Dostavljac> dostavljaci = dostavljacService.findAll();
-
-
-        Dostavljac newDostavljac = dostavljacService.create(new Dostavljac(dostavljac.getID(), dostavljac.getKorisnickoIme(),
-                dostavljac.getLozinka(), dostavljac.getIme(), dostavljac.getPrezime(),
-                dostavljac.getPol(), dostavljac.getDatumRodjenja(), dostavljac.getUloga(),
-                dostavljac.getPorudzbine()));
-        dostavljaci.add(newDostavljac);
+        Dostavljac newDostavljac = dostavljacService.create(dostavljac);
 
         return new ResponseEntity<>(newDostavljac, HttpStatus.CREATED);
 
     }
 
-    //kreiraj restoran
-    @PostMapping(path = "restoran",
-            consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    //kreiraj restoran*uradjeno*
+    @PostMapping(path = "/napravi/restoran", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restoran> napraviRestoran(@RequestBody Restoran restoran) throws Exception {
-        Restoran res = new Restoran();
+        Restoran newRestoran = restoranService.create(restoran);
 
-        Restoran newRestoran = restoranService.create(res);
-        //komentar
         return new ResponseEntity<>(newRestoran, HttpStatus.CREATED);
     }
 
     //prikaz svih restorana
-    @GetMapping(path = "restorani",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Restoran>> sviRestorani() {
+    @GetMapping(path = "/prikazi/restorani", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<RestoranDTO>> sviRestorani() {
         List<Restoran> restorani = restoranService.findAll();
-        return new ResponseEntity<>(restorani, HttpStatus.OK);
+        List<RestoranDTO> restoraniDTO = new ArrayList<>();
+
+        for(Restoran r:restorani)
+        {
+            RestoranDTO restoranDTO = new RestoranDTO(r.getID(),
+                    r.getNaziv(), r.getTipRestorana(), r.getArtikli(), r.getKomentari(),
+                    r.getLokacija(), r.isOtvoren(), r.getMenadzer());
+            restoraniDTO.add(restoranDTO);
+
+        }
+        return new ResponseEntity<>(restoraniDTO, HttpStatus.OK);
     }
 
     //brisanje restorana
-    @GetMapping("/remove/{trainingId}/{id}")//ukloni trening
+    @PostMapping("/obrisi/restoran")
     public String removeRestoran(@PathVariable("restoranID") Long restoranID, @PathVariable("id") Long id) {
         Restoran restoran = this.restoranService.getRestoranById(id);
         List<Restoran> temp = restoranService.findAll();

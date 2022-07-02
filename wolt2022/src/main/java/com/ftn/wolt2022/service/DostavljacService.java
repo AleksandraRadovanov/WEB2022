@@ -17,17 +17,14 @@ import java.util.List;
 public class DostavljacService {
     public final DostavljacRepository dostavljacRepository;
 
-    public static List<Dostavljac> findAll() {
-        List<Dostavljac> dostavljaci = new ArrayList<Dostavljac>();
-
-        return dostavljaci;
+    public List<Dostavljac> findAll() {
+       return dostavljacRepository.findAll();
     }
     public void save(Dostavljac dostavljac) {
 
     }
     public Dostavljac findOne(Long id) {
-        Dostavljac dostavljac = new Dostavljac();
-        return dostavljac;
+       return dostavljacRepository.findOne(id);
     }
     public Dostavljac create(Dostavljac dos) {
         Dostavljac dostavljac1 = new Dostavljac();
@@ -38,7 +35,8 @@ public class DostavljacService {
         dostavljac1.setPol(dos.getPol());
         dostavljac1.setDatumRodjenja(dos.getDatumRodjenja());
 
-        return dostavljacRepository.save(dostavljac1);
+        dostavljacRepository.save(dostavljac1);
+        return dostavljac1;
 
     }
 }

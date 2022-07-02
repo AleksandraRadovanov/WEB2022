@@ -1,9 +1,7 @@
 package com.ftn.wolt2022.service;
 
 import com.ftn.wolt2022.entity.Korisnik;
-import com.ftn.wolt2022.entity.Lokacija;
-import com.ftn.wolt2022.entity.Restoran;
-import com.ftn.wolt2022.entity.TipRestorana;
+import com.ftn.wolt2022.repository.KorisnikRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,54 +9,27 @@ import java.util.List;
 @Service
 public class KorisnikService {
 
-    private KorisnikService korisnikService;
+    private final KorisnikRepository korisnikRepository;
 
-    public static List<Korisnik> findAll() {
-        List<Korisnik> korisnici = new ArrayList<Korisnik>();
+    public KorisnikService(KorisnikRepository korisnikRepository) {
+        this.korisnikRepository = korisnikRepository;
+    }
 
-        return korisnici;
+    public List<Korisnik> findAll() {
+        return korisnikRepository.findAll();
     }
     public Korisnik findOne(Long korisnik_id) {
-        Korisnik korisnik = new Korisnik();
-
-        return korisnik;
+        return korisnikRepository.findOne(korisnik_id);
     }
 
     public List<Korisnik> findByIme(String ime) {
-        List<Korisnik> korisnici = korisnikService.findAll();
-        List<Korisnik> pom = new ArrayList<Korisnik>();
-        for(Korisnik k : korisnici)
-        {
-            if(k.getIme().equals(ime))
-            {
-                pom.add(k);
-            }
-        }
-        return pom;
+        return korisnikRepository.findByIme(ime);
     }
     public List<Korisnik> findByPrezime(String prezime) {
-        List<Korisnik> korisnici = korisnikService.findAll();
-        List<Korisnik> pom = new ArrayList<Korisnik>();
-        for(Korisnik k : korisnici)
-        {
-            if(k.getPrezime().equals(prezime))
-            {
-                pom.add(k);
-            }
-        }
-        return pom;
+        return korisnikRepository.findByPrezime(prezime);
     }
     public List<Korisnik> findByKorisnickoIme(String korisnickoIme) {
-        List<Korisnik> korisnici = korisnikService.findAll();
-        List<Korisnik> pom = new ArrayList<Korisnik>();
-        for(Korisnik k : korisnici)
-        {
-            if(k.getKorisnickoIme().equals(korisnickoIme))
-            {
-                pom.add(k);
-            }
-        }
-        return pom;
+        return korisnikRepository.findByKorisnickoIme(korisnickoIme);
     }
 
 }

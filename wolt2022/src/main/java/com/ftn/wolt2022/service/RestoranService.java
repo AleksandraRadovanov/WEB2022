@@ -19,75 +19,30 @@ import org.springframework.stereotype.Service;
 public class RestoranService {
     public final RestoranRepository restoranRepository;
     public List<Restoran> findAll() {
-        List<Restoran> restorani = new ArrayList<Restoran>();
-
-        return restorani;
+        return restoranRepository.findAll();
     }
 
-    public static Restoran getRestoranById(Long ID)
+    public Restoran getRestoranById(Long ID)
     {
-        Restoran restoran = new Restoran();
-
-        return restoran;
+        return restoranRepository.getRestoranById(ID);
     }
     public void save(Restoran restoranp) {
     }
     public List<Restoran> findByNaziv(String naziv) {
-        List<Restoran> restorani = findAll();
-        List<Restoran> pom = new ArrayList<Restoran>();
-        for(Restoran r : restorani)
-        {
-            if(r.getNaziv().equals(naziv))
-            {
-                pom.add(r);
-            }
-        }
-        return pom;
+        return restoranRepository.findByNaziv(naziv);
     }
     public List<Restoran> findByTip(TipRestorana tip) {
-        List<Restoran> restorani = findAll();
-        List<Restoran> pom = new ArrayList<Restoran>();
-        for(Restoran r : restorani)
-        {
-            if(r.getTipRestorana() == tip)
-            {
-                pom.add(r);
-            }
-        }
-        return pom;
+        return restoranRepository.findByTip(tip);
     }
     public List<Restoran> findByLokacija(Lokacija lokacija) {
-        List<Restoran> restorani = findAll();
-        List<Restoran> pom = new ArrayList<Restoran>();
-        for(Restoran r : restorani)
-        {
-            if(r.getLokacija() == lokacija)
-            {
-                pom.add(r);
-            }
-        }
-        return pom;
+        return restoranRepository.findByLokacija(lokacija);
     }
     public Restoran  findByMenadzerID(Long menadzer_id) {
-        List<Restoran> restorani = findAll();
-        Restoran pom = new Restoran();
-        for(Restoran r : restorani)
-        {
-            if(r.getMenadzer().getId() == menadzer_id)
-            {
-                pom.setID(r.getID());
-                pom.setOtvoren(r.isOtvoren());
-                pom.setMenadzer(r.getMenadzer());
-                pom.setLokacija(r.getLokacija());
-                pom.setArtikli(r.getArtikli());
-                pom.setTipRestorana(r.getTipRestorana());
-                pom.setNaziv(r.getNaziv());
-            }
-        }
-        return pom;
+        return restoranRepository.findByMenadzerID(menadzer_id);
     }
     public Restoran create(Restoran res) {
         Restoran restoran1 = new Restoran();
+
         restoran1.setNaziv(res.getNaziv());
         restoran1.setTipRestorana(res.getTipRestorana());
         restoran1.setLokacija(res.getLokacija());
@@ -95,6 +50,9 @@ public class RestoranService {
         restoran1.setArtikli(res.getArtikli());
         restoran1.setKomentari(res.getKomentari());
         restoran1.setMenadzer(res.getMenadzer());
-        return restoranRepository.save(restoran1);
+
+        restoranRepository.save(restoran1);
+
+        return restoran1;
     }
 }
