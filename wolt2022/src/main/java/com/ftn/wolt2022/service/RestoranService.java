@@ -42,7 +42,8 @@ public class RestoranService {
         Restoran restoran = restoranRepository.findByLokacija(lokacija);
         return restoran;
     }
-    public Restoran  findByMenadzerID(Long menadzer_id) {
+    public Restoran findByMenadzerID(Long menadzer_id) {
+
         return restoranRepository.findByMenadzerId(menadzer_id);
     }
     public Restoran create(Restoran res) {
@@ -59,5 +60,9 @@ public class RestoranService {
         restoranRepository.save(restoran1);
 
         return restoran1;
+    }
+
+    public void removeRestoran(Restoran restoran, List<Restoran> restorani) {
+        restorani.removeIf(r -> r.getId().equals(restoran.getId()));
     }
 }

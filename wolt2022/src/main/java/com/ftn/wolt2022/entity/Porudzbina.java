@@ -20,7 +20,7 @@ public class Porudzbina {
 
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private Long Id; //Long, promenio UID
+	private Long id;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Artikal> PoruceniArtikli = new ArrayList<>();
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

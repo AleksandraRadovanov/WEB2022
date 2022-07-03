@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface KupacRepository extends JpaRepository<Kupac, Long> {
 
+  //  Kupac findByKorisnickoILozinka(String korisnickoIme, String lozinka);
 }

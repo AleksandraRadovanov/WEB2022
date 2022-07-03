@@ -18,6 +18,7 @@ import java.util.Optional;
 public class DostavljacService {
     public final DostavljacRepository dostavljacRepository;
 
+    public List<Dostavljac>dostavljacs = new ArrayList<Dostavljac>(); //mozda treba
     public List<Dostavljac> findAll() {
        return dostavljacRepository.findAll();
     }

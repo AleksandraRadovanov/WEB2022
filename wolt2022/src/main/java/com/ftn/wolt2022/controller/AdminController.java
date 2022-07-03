@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ public class AdminController {
     private final DostavljacService dostavljacService;
 
     //nadji admina preko korisnickog imena i lozinke
-    @GetMapping(value = "/{korisnickoime}/{lozinka}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/korisnickoime/lozinka", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AdminDTO> findByKorisnickoImeILozinka(@PathVariable String korisnickoIme, String lozinka) {
         Admin admin = adminService.findByKorisnickoImeILozinka(korisnickoIme, lozinka);
         AdminDTO adminDTO = new AdminDTO(admin.getId(), admin.getKorisnickoIme(), admin.getLozinka(), admin.getIme(), admin.getPrezime(), admin.getDatumRodjenja(), admin.getUloga(), admin.getPol());
@@ -107,12 +108,40 @@ public class AdminController {
         return new ResponseEntity<>(restoraniDTO, HttpStatus.OK);
     }
 
-    //brisanje restorana
+    //brisanje restorana*uradjeno*
     @PostMapping("/obrisi/restoran")
     public String removeRestoran(@PathVariable("restoranID") Long restoranID, @PathVariable("id") Long id) {
-        Restoran restoran = this.restoranService.getRestoranById(id);
-        List<Restoran> temp = restoranService.findAll();
-        temp.remove(restoran);
-        return "redirect:/admin/" + id + "/restorani";
+        Restoran restoran = restoranService.getRestoranById(id);
+
+        List<Restoran> restorani = restoranService.findAll();
+        restoranService.removeRestoran(restoran, restorani);
+        return "/restorani";
+    }
+
+    //pretrazivanje korisnika po imenu
+    @PostMapping("/pretrazi_korisnike/ime")
+    public String pretraziPoImenu(@ModelAttribute Korisnik formData, Model model)
+    {
+        Korisnik korisnik = korisnikService.findByIme(formData.getIme());
+        model.addAttribute("korisnik", korisnik);
+        return "index";
+    }
+
+    //pretrazivanje korisnika po prezimenu
+    @PostMapping("/pretrazi_korisnike/prezime")
+    public String pretraziPoPrezimenu(@ModelAttribute Korisnik formData, Model model)
+    {
+        Korisnik korisnik = korisnikService.findByPrezime(formData.getPrezime());
+        model.addAttribute("korisnik", korisnik);
+        return "index";
+    }
+
+    //pretrazivanje korisnika po korisnickom imenu
+    @PostMapping("/pretrazi_korisnike/korisnickoIme")
+    public String pretraziPoKorisnickomImenu(@ModelAttribute Korisnik formData, Model model)
+    {
+        Korisnik korisnik = korisnikService.findByKorisnickoIme(formData.getKorisnickoIme());
+        model.addAttribute("korisnik", korisnik);
+        return "index";
     }
 }

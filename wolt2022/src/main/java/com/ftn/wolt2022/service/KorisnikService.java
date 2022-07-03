@@ -17,7 +17,7 @@ public class KorisnikService {
         return korisnikRepository.findAll();
     }
     public Korisnik findOne(Long korisnik_id) {
-        Optional<Korisnik>korisnik = korisnikRepository.findById(korisnik_id);
+        Optional<Korisnik> korisnik = korisnikRepository.findById(korisnik_id);
         return korisnik.orElse(null);
     }
 

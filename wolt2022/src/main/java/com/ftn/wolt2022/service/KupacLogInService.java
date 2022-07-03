@@ -1,10 +1,12 @@
 package com.ftn.wolt2022.service;
 
+import com.ftn.wolt2022.entity.Korisnik;
 import com.ftn.wolt2022.entity.Kupac;
 import com.ftn.wolt2022.repository.KupacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class KupacLogInService {
@@ -18,4 +20,5 @@ public class KupacLogInService {
     {
         return kupacRepository.findAll();
     }
+
 }
