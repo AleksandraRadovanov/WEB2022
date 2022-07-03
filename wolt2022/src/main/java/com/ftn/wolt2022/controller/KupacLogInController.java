@@ -1,4 +1,4 @@
-package com.ftn.wolt2022.DTO.controller;
+package com.ftn.wolt2022.controller;
 
 import com.ftn.wolt2022.DTO.KupacLogInDTO;
 import com.ftn.wolt2022.entity.Kupac;
