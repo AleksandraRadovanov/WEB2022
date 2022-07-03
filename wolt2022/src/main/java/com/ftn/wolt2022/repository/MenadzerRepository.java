@@ -8,7 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface MenadzerRepository extends JpaRepository<Menadzer, Long> {
-    void save(Menadzer menadzer);
-    Menadzer findOne(Long menadzerId);
-    Menadzer findById(Long menadzerId);
+
 }

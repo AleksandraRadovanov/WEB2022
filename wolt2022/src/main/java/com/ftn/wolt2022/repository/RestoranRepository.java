@@ -4,19 +4,15 @@ import com.ftn.wolt2022.entity.Lokacija;
 import com.ftn.wolt2022.entity.Restoran;
 import com.ftn.wolt2022.entity.TipRestorana;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface RestoranRepository extends JpaRepository<Restoran, Long> {
-    List<Restoran> findAll();
-    Restoran getRestoranById(Long ID);
-    void save(Restoran restoranp);
-    List<Restoran> findByNaziv(String naziv);
-    List<Restoran> findByTip(TipRestorana tip);
-    List<Restoran> findByLokacija(Lokacija lokacija);
-    Restoran  findByMenadzerID(Long menadzer_id);
-    Restoran create(Restoran res);
-
+    Restoran findByNaziv(String naziv);
+    Restoran findByTipRestorana(TipRestorana tip);
+    Restoran findByLokacija(Lokacija lokacija);
+    Restoran findByMenadzerId(Long menadzer_id);
 }

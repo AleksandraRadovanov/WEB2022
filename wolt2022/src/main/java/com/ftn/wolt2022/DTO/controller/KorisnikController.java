@@ -1,4 +1,4 @@
-package com.ftn.wolt2022.controller;
+package com.ftn.wolt2022.DTO.controller;
 
 import com.ftn.wolt2022.entity.*;
 import org.springframework.ui.Model;
@@ -55,7 +55,7 @@ public class KorisnikController
             return "signup.html";
         }
 
-        @PostMapping("/signup")
+        /*@PostMapping("/signup")
         public String post_signup(@ModelAttribute Kupac korisnik)
         {
             Kupac korisnikp = new Kupac();
@@ -72,7 +72,7 @@ public class KorisnikController
 
             this.kupacService.save(korisnikp);
             return "uspesno!";
-        }
+        }*/
 
         //---------------------------------LOGOVANJE---------------------------------------
 
@@ -84,7 +84,7 @@ public class KorisnikController
             return "login.html";//vracamo se na login stranu
         }
 
-        @GetMapping("/login-attempt")//pokusaj logovanja
+       /* @GetMapping("/login-attempt")//pokusaj logovanja
         public String post_login(@ModelAttribute Korisnik korisnik)
         {
             List<Korisnik> korisnici = KorisnikService.findAll();
@@ -112,7 +112,7 @@ public class KorisnikController
                 }
             }
             return  "redirect:/login";
-        }
+        }*/
 
         //---------------------------------ADMIN---------------------------------------
 
@@ -168,13 +168,13 @@ public class KorisnikController
             return "administrator_signup_menadzer.html";
         }
 
-        @PostMapping("/admin/create/menadzer")//posle kreiranja menadzera
+      /*  @PostMapping("/admin/create/menadzer")//posle kreiranja menadzera
         public String post_admin_create_menadzer(@ModelAttribute Menadzer menadzer, Model model)
         {
             menadzer.setUloga(Korisnik.Uloga.valueOf("MENADZER"));
             this.menadzerService.save(menadzer);
             return "redirect:/admin/" + adminID;
-        }
+        }*/
 
         //kreiranje dostavljaca
         @GetMapping("/admin/{admin_id}/register/dostavljac")//pre kreiranja dostavljaca
@@ -188,15 +188,15 @@ public class KorisnikController
             return "administrator_signup_dostavljac.html";
         }
 
-        @PostMapping("/admin/create/dostavljac")//posle kreiranja menadzera
+       /* @PostMapping("/admin/create/dostavljac")//posle kreiranja menadzera
         public String post_admin_create_dostavljac(@ModelAttribute Dostavljac dostavljac, Model model)
         {
             dostavljac.setUloga(Korisnik.Uloga.valueOf("DOSTAVLJAC"));
             this.dostavljacService.save(dostavljac);
             return "redirect:/admin/" + adminID;
-        }
+        }*/
 
-        @PostMapping("/create_restoran")
+       /* @PostMapping("/create_restoran")
         public String create_restoran(@ModelAttribute Restoran restoran)
         {
             Restoran restoranp = new Restoran();
@@ -208,7 +208,7 @@ public class KorisnikController
 
             this.restoranService.save(restoranp);
             return null;
-        }
+        }*/
 
     @PostMapping("/prikaz_svih_restorana_svima")
     public String viewAllRestorants(@PathVariable("korisnik_id") Long korisnik_id, Model model)
@@ -224,7 +224,7 @@ public class KorisnikController
     @PostMapping("/prikaz_restorana_po_nazivu")
     public String findRestoranByNaziv(@PathVariable("korisnik_id") String naziv, Model model)
     {
-        List<Restoran> restorani = restoranService.findByNaziv(naziv);
+        Restoran restorani = restoranService.findByNaziv(naziv);
 
         model.addAttribute("list", restorani);
 
@@ -234,7 +234,7 @@ public class KorisnikController
     @PostMapping("/prikaz_restorana_po_tipu")
     public String findRestoranByTip(@PathVariable("korisnik_id") TipRestorana tip, Model model)
     {
-        List<Restoran> restorani = restoranService.findByTip(tip);
+        Restoran restorani = restoranService.findByTip(tip);
 
         model.addAttribute("list", restorani);
 
@@ -244,7 +244,7 @@ public class KorisnikController
     @PostMapping("/prikaz_restorana_po_lokaciji")
     public String findRestoranByLokacija(@PathVariable("korisnik_id") Lokacija lokacija, Model model)
     {
-        List<Restoran> restorani = restoranService.findByLokacija(lokacija);
+        Restoran restorani = restoranService.findByLokacija(lokacija);
 
         model.addAttribute("list", restorani);
 
@@ -282,7 +282,7 @@ public class KorisnikController
         Menadzer menadzer = menadzerService.getMenadzerByID(menadzer_id);
         Restoran restoran = restoranService.findByMenadzerID(menadzer_id);
 
-        List<Porudzbina> porudzbine = porudzbinaService.findByMenadzer(menadzer_id, restoran.getID());
+        List<Porudzbina> porudzbine = porudzbinaService.findByMenadzer(menadzer_id, restoran.getId());
 
         model.addAttribute("list", porudzbine);
 

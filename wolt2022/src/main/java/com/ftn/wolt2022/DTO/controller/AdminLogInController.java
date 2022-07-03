@@ -1,4 +1,4 @@
-package com.ftn.wolt2022.controller;
+package com.ftn.wolt2022.DTO.controller;
 
 import com.ftn.wolt2022.DTO.AdminLogInDTO;
 import com.ftn.wolt2022.entity.Admin;
@@ -34,7 +34,7 @@ public class AdminLogInController {
             {
                 if(a.getLozinka().equals(adminLogInDTO1.getLozinka()))
                 {
-                    adminLogInDTO1.setID(a.getID());
+                    adminLogInDTO1.setID(a.getId());
                     return new ResponseEntity<>(adminLogInDTO1, HttpStatus.OK);
                 }
                 else

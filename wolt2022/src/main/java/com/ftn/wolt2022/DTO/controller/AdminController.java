@@ -1,4 +1,4 @@
-package com.ftn.wolt2022.controller;
+package com.ftn.wolt2022.DTO.controller;
 
 import com.ftn.wolt2022.DTO.AdminDTO;
 import com.ftn.wolt2022.DTO.KorisnikDTO;
@@ -31,11 +31,11 @@ public class AdminController {
     private final DostavljacService dostavljacService;
 
     //nadji admina preko korisnickog imena i lozinke
-    @GetMapping(value = "/{korsnickoime}/{lozinka}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Admin> findByKorisnickoImeILozinka(@PathVariable String korisnickoIme, String lozinka) {
+    @GetMapping(value = "/{korisnickoime}/{lozinka}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AdminDTO> findByKorisnickoImeILozinka(@PathVariable String korisnickoIme, String lozinka) {
         Admin admin = adminService.findByKorisnickoImeILozinka(korisnickoIme, lozinka);
-        AdminDTO adminDTO = new AdminDTO(admin.getID(), admin.getKorisnickoIme(), admin.getLozinka(), admin.getIme(), admin.getPrezime(), admin.getDatumRodjenja(), admin.getUloga(), admin.getPol());
-        return new ResponseEntity<Admin>((MultiValueMap<String, String>) adminDTO, HttpStatus.OK);
+        AdminDTO adminDTO = new AdminDTO(admin.getId(), admin.getKorisnickoIme(), admin.getLozinka(), admin.getIme(), admin.getPrezime(), admin.getDatumRodjenja(), admin.getUloga(), admin.getPol());
+        return new ResponseEntity<>(adminDTO, HttpStatus.OK);
 
     }
 
@@ -47,7 +47,7 @@ public class AdminController {
 
         for(Korisnik k:korisnici)
         {
-            KorisnikDTO korisnikDTO = new KorisnikDTO(k.getID(),
+            KorisnikDTO korisnikDTO = new KorisnikDTO(k.getId(),
                    k.getKorisnickoIme(), k.getLozinka(),
                     k.getIme(), k.getPrezime(), k.getPol(),
                     k.getDatumRodjenja(),
@@ -64,6 +64,13 @@ public class AdminController {
         Menadzer newMenadzer = menadzerService.create(menadzer);
 
         return new ResponseEntity<>(newMenadzer, HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "/prikazi/menadzeri", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Menadzer>> sviMenadzeri() {
+        List<Menadzer> menadzerList = menadzerService.findAll();
+
+        return new ResponseEntity<>(menadzerList, HttpStatus.OK);
     }
 
     //kreiranje dostavljaca*uradjeno*
@@ -91,7 +98,7 @@ public class AdminController {
 
         for(Restoran r:restorani)
         {
-            RestoranDTO restoranDTO = new RestoranDTO(r.getID(),
+            RestoranDTO restoranDTO = new RestoranDTO(r.getId(),
                     r.getNaziv(), r.getTipRestorana(), r.getArtikli(), r.getKomentari(),
                     r.getLokacija(), r.isOtvoren(), r.getMenadzer());
             restoraniDTO.add(restoranDTO);

@@ -8,9 +8,5 @@ import java.util.List;
 
 @Repository
 public interface KupacRepository extends JpaRepository<Kupac, Long> {
-    Kupac findOne(Long id);
-    void save(Kupac kupac);
-    List<Kupac> findAll();
-
 
 }

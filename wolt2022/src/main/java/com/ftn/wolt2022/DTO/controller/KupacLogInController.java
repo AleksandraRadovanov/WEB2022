@@ -1,4 +1,4 @@
-package com.ftn.wolt2022.controller;
+package com.ftn.wolt2022.DTO.controller;
 
 import com.ftn.wolt2022.DTO.KupacLogInDTO;
 import com.ftn.wolt2022.entity.Kupac;
@@ -31,7 +31,7 @@ public class KupacLogInController {
         for(Kupac k:kupci){
             if(k.getKorisnickoIme().equals(kupacLogInDTO1.getKorisnickoIme())){
                 if(k.getLozinka().equals(kupacLogInDTO1.getLozinka())){
-                    kupacLogInDTO1.setID(k.getID());
+                    kupacLogInDTO1.setID(k.getId());
                     return new ResponseEntity<>(kupacLogInDTO1, HttpStatus.OK);
                 }
                 else {

@@ -1,22 +1,20 @@
 package com.ftn.wolt2022.service;
 
+import com.fasterxml.jackson.annotation.OptBoolean;
 import com.ftn.wolt2022.entity.Kupac;
 import com.ftn.wolt2022.repository.KupacRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.spec.OAEPParameterSpec;
+import java.util.Optional;
+
 @Service
+@RequiredArgsConstructor
 public class KupacService {
-    public final KupacRepository kupacRepository;
-
-    public KupacService(KupacRepository kupacRepository) {
-        this.kupacRepository = kupacRepository;
-    }
-    public void save(Kupac kupac) {
-
-    }
+    private final KupacRepository kupacRepository;
     public Kupac findOne(Long id) {
-        return kupacRepository.findOne(id);
+        Optional<Kupac>kupac = kupacRepository.findById(id);
+        return kupac.orElse(null);
     }
-
-
 }

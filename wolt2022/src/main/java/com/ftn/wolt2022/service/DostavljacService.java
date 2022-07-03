@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,11 +21,10 @@ public class DostavljacService {
     public List<Dostavljac> findAll() {
        return dostavljacRepository.findAll();
     }
-    public void save(Dostavljac dostavljac) {
 
-    }
     public Dostavljac findOne(Long id) {
-       return dostavljacRepository.findOne(id);
+        Optional<Dostavljac>dostavljac = dostavljacRepository.findById(id);
+        return dostavljac.orElse(null);
     }
     public Dostavljac create(Dostavljac dos) {
         Dostavljac dostavljac1 = new Dostavljac();

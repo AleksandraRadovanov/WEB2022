@@ -28,7 +28,7 @@ public class DostavljacDTO {
     public static Dostavljac convert(DostavljacDTO dostavljacDTO){
         if(dostavljacDTO != null){
             Dostavljac dostavljac = new Dostavljac();
-            dostavljac.setID(dostavljacDTO.getID());
+            dostavljac.setId(dostavljacDTO.getID());
             dostavljac.setKorisnickoIme(dostavljacDTO.getKorisnickoIme());
             dostavljac.setLozinka(dostavljacDTO.getLozinka());
             dostavljac.setIme(dostavljacDTO.getIme());
@@ -48,7 +48,7 @@ public class DostavljacDTO {
     public static DostavljacDTO convert(Dostavljac dostavljac){
         if(dostavljac != null){
             DostavljacDTO dostavljacDTO = new DostavljacDTO();
-            dostavljacDTO.setID(dostavljac.getID());
+            dostavljacDTO.setID(dostavljac.getId());
             dostavljacDTO.setKorisnickoIme(dostavljac.getKorisnickoIme());
             dostavljacDTO.setLozinka(dostavljac.getLozinka());
             dostavljacDTO.setIme(dostavljac.getIme());

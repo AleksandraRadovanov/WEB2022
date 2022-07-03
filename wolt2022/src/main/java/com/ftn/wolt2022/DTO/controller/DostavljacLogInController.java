@@ -1,5 +1,6 @@
-package com.ftn.wolt2022.controller;
+package com.ftn.wolt2022.DTO.controller;
 
+import com.ftn.wolt2022.DTO.DostavljacDTO;
 import com.ftn.wolt2022.DTO.DostavljacLogInDTO;
 import com.ftn.wolt2022.entity.Dostavljac;
 import com.ftn.wolt2022.entity.Korisnik;
@@ -26,7 +27,7 @@ public class DostavljacLogInController {
 
     //logovanje dostavljaca
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dostavljac> login(@RequestBody DostavljacLogInDTO dostavljacLogInDTO)
+    public ResponseEntity<DostavljacLogInDTO> login(@RequestBody DostavljacLogInDTO dostavljacLogInDTO)
     {
         DostavljacLogInDTO dostavljacLogInDTO1 = new DostavljacLogInDTO(dostavljacLogInDTO.getId(), dostavljacLogInDTO.getKorisnickoime(), dostavljacLogInDTO.getLozinka());
         List<Dostavljac> dostavljaci = dostavljacLogInService.findAll();
@@ -36,16 +37,16 @@ public class DostavljacLogInController {
             {
                 if(d.getLozinka().equals(dostavljacLogInDTO1.getLozinka()))
                 {
-                    dostavljacLogInDTO1.setId(d.getID());
-                    return new ResponseEntity<Dostavljac>((MultiValueMap<String, String>) dostavljacLogInDTO1, HttpStatus.OK);
+                    dostavljacLogInDTO1.setId(d.getId());
+                    return new ResponseEntity<>(dostavljacLogInDTO1, HttpStatus.OK);
                 }
                 else
                 {
-                    return new ResponseEntity<Dostavljac>((MultiValueMap<String, String>) dostavljacLogInDTO1, HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity<>(dostavljacLogInDTO1, HttpStatus.BAD_REQUEST);
                 }
             }
         }
-        return new ResponseEntity<Dostavljac>((MultiValueMap<String, String>) dostavljacLogInDTO1, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(dostavljacLogInDTO1, HttpStatus.NOT_FOUND);
     }
 
 

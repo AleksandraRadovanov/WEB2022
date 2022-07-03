@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import com.ftn.wolt2022.service.*;
 import org.springframework.stereotype.Service;
 
@@ -24,21 +26,24 @@ public class RestoranService {
 
     public Restoran getRestoranById(Long ID)
     {
-        return restoranRepository.getRestoranById(ID);
+        Optional<Restoran>restoran = restoranRepository.findById(ID);
+        return restoran.orElse(null);
     }
-    public void save(Restoran restoranp) {
+
+    public Restoran findByNaziv(String naziv) {
+        Restoran restoran = restoranRepository.findByNaziv(naziv);
+        return restoran;
     }
-    public List<Restoran> findByNaziv(String naziv) {
-        return restoranRepository.findByNaziv(naziv);
+    public Restoran findByTip(TipRestorana tip) {
+        Restoran restoran = restoranRepository.findByTipRestorana(tip);
+        return restoran;
     }
-    public List<Restoran> findByTip(TipRestorana tip) {
-        return restoranRepository.findByTip(tip);
-    }
-    public List<Restoran> findByLokacija(Lokacija lokacija) {
-        return restoranRepository.findByLokacija(lokacija);
+    public Restoran findByLokacija(Lokacija lokacija) {
+        Restoran restoran = restoranRepository.findByLokacija(lokacija);
+        return restoran;
     }
     public Restoran  findByMenadzerID(Long menadzer_id) {
-        return restoranRepository.findByMenadzerID(menadzer_id);
+        return restoranRepository.findByMenadzerId(menadzer_id);
     }
     public Restoran create(Restoran res) {
         Restoran restoran1 = new Restoran();

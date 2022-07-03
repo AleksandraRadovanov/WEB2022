@@ -5,13 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
-    List<Korisnik> findAll();
-    Korisnik findOne(Long korisnik_id);
-    List<Korisnik> findByIme(String ime);
-    List<Korisnik> findByPrezime(String prezime);
-    List<Korisnik> findByKorisnickoIme(String korisnickoIme);
+    Korisnik findByIme(String ime);
+    Korisnik findByPrezime(String prezime);
+    Korisnik findByKorisnickoIme(String korisnickoIme);
 
 }

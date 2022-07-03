@@ -3,9 +3,9 @@ package com.ftn.wolt2022.service;
 import com.ftn.wolt2022.entity.Menadzer;
 import com.ftn.wolt2022.repository.MenadzerRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,12 +13,10 @@ import java.util.Optional;
 public class MenadzerService {
     public final MenadzerRepository menadzerRepository;
 
-    public Menadzer findById(Long menadzerId) {
+    public Optional<Menadzer> findById(Long menadzerId) {
         return menadzerRepository.findById(menadzerId);
     }
-    public void save(Menadzer menadzer) {
 
-    }
     public static Menadzer findOne(Long menadzerId) {
 
         //Menadzer menadzer = menadzerRepository.findOne();
@@ -34,6 +32,15 @@ public class MenadzerService {
         menadzer1.setDatumRodjenja(men.getDatumRodjenja());
         menadzerRepository.save(menadzer1);
         return menadzer1;
+    }
+
+    public Menadzer getMenadzerByID(Long menadzer_id) {
+        return null;
+    }
+
+    public List<Menadzer> findAll() {
+        List<Menadzer> menadzerList = menadzerRepository.findAll();
+        return menadzerList;
     }
 }
 

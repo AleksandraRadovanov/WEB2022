@@ -1,29 +1,22 @@
 package com.ftn.wolt2022.service;
 
-import com.ftn.wolt2022.DTO.ArtikalDTO;
 import com.ftn.wolt2022.entity.Artikal;
 import com.ftn.wolt2022.entity.Menadzer;
 import com.ftn.wolt2022.repository.ArtikalRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ArtikalService {
-    public final ArtikalRepository artikalRepository;
-
-    public ArtikalService(ArtikalRepository artikalRepository) {
-        this.artikalRepository = artikalRepository;
-    }
-
+    private final ArtikalRepository artikalRepository;
     public Artikal findById(Long id) {
-        return artikalRepository.findById(id);
+        Optional<Artikal>artikal = artikalRepository.findById(id);
+        return artikal.orElse(null);
     }
-
-    public static Artikal updateArtikala(Artikal artikal, Menadzer menadzer) {
+    public Artikal updateArtikala(Artikal artikal, Menadzer menadzer) {
         return null;
     }
 }

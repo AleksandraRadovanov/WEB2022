@@ -20,25 +20,25 @@ public class Korisnik implements Serializable {
 	}
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private Long ID;
+	private Long id;
 	@Column
 	private String korisnickoIme;
 	@Column
 	private String lozinka;
 	@Column
-	private String Ime;
+	private String ime;
 	@Column
-	private String Prezime;
+	private String prezime;
 	@Column
-	private String Pol;
+	private String pol;
 	@Column
-	private LocalDate DatumRodjenja;
+	private LocalDate datumRodjenja;
 	@Column
-	private Uloga Uloga;
+	private Uloga uloga;
 
 	@Override
 	public String toString() {
-		return "Korisnik [KorisnickoIme=" + korisnickoIme + ", Lozinka=" + lozinka + ", Ime=" + Ime + ", Prezime="
-				+ Prezime + ", Pol=" + Pol + ", DatumRodjenja=" + DatumRodjenja + ", Uloga=" + Uloga + "]";
+		return "Korisnik [KorisnickoIme=" + korisnickoIme + ", Lozinka=" + lozinka + ", Ime=" + ime + ", Prezime="
+				+ prezime + ", Pol=" + pol + ", DatumRodjenja=" + datumRodjenja + ", Uloga=" + uloga + "]";
 	}
 }
